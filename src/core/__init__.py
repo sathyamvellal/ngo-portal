@@ -1,6 +1,7 @@
 from flask import Flask
 from flask.ext.assets import Environment, Bundle
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.login import LoginManager
 
 # Configuring Flask Application
 app = Flask(__name__)
@@ -17,6 +18,10 @@ webAssets.register("js_main", Bundle("js/main.js", filters="jsmin",
 
 # Configuring database
 db = SQLAlchemy(app)
+
+# Configuring Flask login
+lm = LoginManager()
+lm.setup_app(app)
 
 __import__("core.models")
 __import__("core.views")
