@@ -7,6 +7,7 @@ Login Form
 
 <div class="">
 	<form class="" method="POST">
+        {{form.hidden_tag()}}
 		<div class="">{{form.openid(type="text", placeholder="OpenID", class="")}}</div>
 		<div class=""><input class="" type="submit" value="Login"/></div>
 	</form>
