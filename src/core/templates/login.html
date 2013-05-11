@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block wrapper %}
+Login Form
+
+<div class="">
+	<form class="" method="POST">
+		<div class="">{{form.openid(type="text", placeholder="OpenID", class="")}}</div>
+		<div class=""><input class="" type="submit" value="Login"/></div>
+	</form>
+</div>
+
+{% endblock %}
