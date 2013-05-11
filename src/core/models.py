@@ -35,7 +35,19 @@ class User(db.Model):
     blood = db.Column(db.Boolean)
     organ = db.Column(db.Boolean)
     disaster = db.Column(db.Boolean)
-	
+    
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return unicode(self.id)
+    
     def __repr__(self):
         return "<User:%r:%r>" % (self.id , self.name,self.email,self.role)
 
