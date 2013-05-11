@@ -1,7 +1,13 @@
+# Flask imports
 from flask import Flask
 from flask.ext.assets import Environment, Bundle
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager
+from flask.ext.openid import OpenID
+from settings import BASEDIR
+
+# Python imports
+import os
 
 # Configuring Flask Application
 app = Flask(__name__)
@@ -22,6 +28,9 @@ db = SQLAlchemy(app)
 # Configuring Flask login
 lm = LoginManager()
 lm.setup_app(app)
+
+# Configuring OpenID
+oid = OpenID(app, os.path.join(BASEDIR, 'tmp'))
 
 __import__("core.models")
 __import__("core.views")
