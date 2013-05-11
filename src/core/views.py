@@ -1,19 +1,27 @@
 # Local project imports
-from core import app
+from core import app, lm
 from core.models import User
+from core.forms import LoginForm
 import helpers as util
 
 # Standard python imports
 import json
 
 # Third party imports
-from flask import render_template, jsonify, request
+from flask import render_template, jsonify, request, g
+from flask.ext.login import login_required, login_user, logout_user, current_user
 
 # Application homepage
 @app.route('/index')
 @app.route("/")
 def index():
     return render_template("index.html")
+
+@app.route('/login', methods = ['GET', 'POST'])
+def login():
+	if g.user is not None and g.user.is_authenticated():
+		pass 
+	return render_template('/login.html', form = LoginForm())
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -49,6 +57,15 @@ def support():
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
+
+# Other necessary functions
+@lm.user_loader
+def user_loader(id):
+	return User.query.get(int(id))
+
+@app.before_request
+def before_request():
+	g.user = current_user;
 
 # Application error handlers
 @app.errorhandler(400)
