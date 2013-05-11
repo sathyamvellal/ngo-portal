@@ -1,3 +1,12 @@
+# Python Imports
+import os
+
+# BASE DIRECTORY
+BASEDIR = os.path.abspath(os.path.dirname(__file__))
+
+# ENABLE CSRF
+CSRF_ENABLED = True
+
 # Mode
 DEVELOPMENT = True
 DEBUG = True
